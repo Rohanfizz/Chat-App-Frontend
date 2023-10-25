@@ -1,7 +1,6 @@
 import React,{useState} from "react";
 import LoginForm from "./LoginForm";
 import InfoBox from "./InfoBox";
-import SignUpForm from "./SignUpForm";
 
 const MainPage = (props: any) => {
 

@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {};
 
-const ChannelOverview = ({ data }: any) => {
+const ChannelOverview = ({ data, idx }: any) => {
     return (
         <li className=" border-b-2">
             <a

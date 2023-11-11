@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
-const Messages = (props: Props) => {
-  return (
-    <div>Messages</div>
-  )
-}
+const Messages = ({ messages }: any) => {
+    return <div>Messages</div>;
+};
 
-export default Messages
+export default Messages;

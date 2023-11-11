@@ -4,7 +4,7 @@ type Props = {};
 
 const InfoBox = (props: Props) => {
     return (
-        <div className="bg-gray-50 dark:bg-gray-900 md:h-screen flex-row items-center justify-center p-10">
+        <div className="bg-gray-900 dark:bg-gray-900 md:h-screen flex-row items-center justify-center p-10">
             <div className="text-5xl h-1/5 font-bold bg-gradient-to-r from-yellow-200 to-purple-900 text-transparent bg-clip-text">
                 FizzChat
             </div>

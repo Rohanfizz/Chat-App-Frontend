@@ -2,9 +2,9 @@ import React from 'react'
 
 type Props = {}
 
-const ChannelHead = (props: Props) => {
+const ChannelHead = (participants: any) => {
   return (
-    <div>ChannelHead</div>
+    <div className='border h-1'>ChannelHead</div>
   )
 }
 

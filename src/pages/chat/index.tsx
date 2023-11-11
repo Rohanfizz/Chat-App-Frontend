@@ -1,99 +1,103 @@
 import Channels from "@/components/ChatPage/Channels";
 import Chat from "@/components/ChatPage/Chat";
+import PlaceHolderChat from "@/components/ChatPage/PlaceHolderChat";
 import ProtectedRoute from "@/components/ui/ProtectedRoute";
 import { userAtom } from "@/recoil/auth";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
-let dummyData = {
-    chatId: "chat123", // Unique identifier for the chat
-    chatName: "Alice and Bob", // Display name for the chat
+let dummyData = [
+    {
+        chatId: "chat123", // Unique identifier for the chat
+        chatName: "Alice and Bob", // Display name for the chat
 
-    participants: [
-        {
-            userId: "alice123",
-            displayName: "Alice",
-            profileImage: "https://robohash.org/alice",
-            unread: 10,
-        },
-        {
-            userId: "bob456",
-            displayName: "Bob",
-            profileImage: "https://robohash.org/bob",
-            unread: 2,
-        },
-    ],
+        participants: [
+            {
+                userId: "alice123",
+                displayName: "Alice",
+                profileImage: "https://robohash.org/alice",
+                unread: 10,
+            },
+            {
+                userId: "bob456",
+                displayName: "Bob",
+                profileImage: "https://robohash.org/bob",
+                unread: 2,
+            },
+        ],
 
-    messages: [
-        {
-            messageId: "msg1",
-            senderId: "alice123",
-            timestamp: "2023-10-10T10:30:00",
-            content: "Hi, Bob! How are you?",
-            readBy: ["bob456"],
-            reactions: {
-                thumbsUp: 2,
-                heart: 1,
+        messages: [
+            {
+                messageId: "msg1",
+                senderId: "alice123",
+                timestamp: "2023-10-10T10:30:00",
+                content: "Hi, Bob! How are you?",
+                readBy: ["bob456"],
+                reactions: {
+                    thumbsUp: 2,
+                    heart: 1,
+                },
             },
-        },
-        {
-            messageId: "msg2",
-            senderId: "bob456",
-            timestamp: "2023-10-10T10:35:00",
-            content: "Hey, Alice! I'm good. How about you?",
-            readBy: ["alice123"],
-            reactions: {
-                thumbsUp: 3,
+            {
+                messageId: "msg2",
+                senderId: "bob456",
+                timestamp: "2023-10-10T10:35:00",
+                content: "Hey, Alice! I'm good. How about you?",
+                readBy: ["alice123"],
+                reactions: {
+                    thumbsUp: 3,
+                },
             },
-        },
-        {
-            messageId: "msg3",
-            senderId: "alice123",
-            timestamp: "2023-10-10T10:40:00",
-            content: "I'm doing well too. What have you been up to?",
-            readBy: [],
-            reactions: {
-                thumbsUp: 1,
+            {
+                messageId: "msg3",
+                senderId: "alice123",
+                timestamp: "2023-10-10T10:40:00",
+                content: "I'm doing well too. What have you been up to?",
+                readBy: [],
+                reactions: {
+                    thumbsUp: 1,
+                },
             },
-        },
-        {
-            messageId: "msg4",
-            senderId: "bob456",
-            timestamp: "2023-10-10T10:45:00",
-            content: "Just working on some projects. How's your day going?",
-            readBy: ["alice123"],
-            reactions: {
-                thumbsUp: 2,
+            {
+                messageId: "msg4",
+                senderId: "bob456",
+                timestamp: "2023-10-10T10:45:00",
+                content: "Just working on some projects. How's your day going?",
+                readBy: ["alice123"],
+                reactions: {
+                    thumbsUp: 2,
+                },
             },
-        },
-        {
-            messageId: "msg5",
-            senderId: "alice123",
-            timestamp: "2023-10-10T10:50:00",
-            content:
-                "Sounds interesting. My day's been productive. Thanks for asking!",
-            readBy: ["bob456"],
-            reactions: {
-                thumbsUp: 1,
-                heart: 1,
+            {
+                messageId: "msg5",
+                senderId: "alice123",
+                timestamp: "2023-10-10T10:50:00",
+                content:
+                    "Sounds interesting. My day's been productive. Thanks for asking!",
+                readBy: ["bob456"],
+                reactions: {
+                    thumbsUp: 1,
+                    heart: 1,
+                },
             },
-        },
-        // Add more messages as needed...
-    ],
-};
+            // Add more messages as needed...
+        ],
+    },
+];
 
 const ChatPage = () => {
-    const [actualUser, setuserAtom] = useRecoilState(userAtom);
-    useEffect(() => {
-        console.log(actualUser);
-    }, []);
+    const [selectedChatIdx, setselectedChatIdx] = useState(-1);
 
     return (
         <ProtectedRoute>
             <div className="bg-gray-900 min-h-screen flex">
                 {/* Sidebar for desktop */}
                 <aside className="hidden md:block w-2/6 bg-gray-700 m-2 rounded-lg shadow-sm">
-                    <Channels data={dummyData.participants} />
+                    <Channels
+                        data={dummyData}
+                        setselectedChatIdx={setselectedChatIdx}
+                        selectedChatIdx={selectedChatIdx}
+                    />
                 </aside>
 
                 {/* Mobile navigation (e.g., a hamburger menu) */}
@@ -105,7 +109,11 @@ const ChatPage = () => {
                 {/* Main content area */}
                 <main className="w-full p-4 m-2 border-2 rounded">
                     {/* Add your main content here */}
-                    <Chat />
+                    <Chat
+                        participants={dummyData.participants}
+                        messages={dummyData.messages}
+                        selectedChatIdx={selectedChatIdx}
+                    />
                 </main>
             </div>
         </ProtectedRoute>

@@ -1,9 +1,15 @@
+import { Message } from "@/utils/globalClasses";
 import React from "react";
+import ChatBubble from "./ChatBubble";
 
-type Props = {};
+type Props = { messages: Message[] };
 
-const Messages = ({ messages }: any) => {
-    return <div>Messages</div>;
+const Messages = ({ messages }: Props) => {
+    return <>
+        {messages.map((message, key) => {
+            return <div><ChatBubble message={message} /></div>
+        })}
+    </>
 };
 
 export default Messages;

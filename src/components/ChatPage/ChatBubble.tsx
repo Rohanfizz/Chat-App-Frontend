@@ -40,7 +40,7 @@ const ChatBubble = ({ message }: Props) => {
                     {message.senderId + " "}
                     <time className="text-xs opacity-50">{getBeautifylDate(date)}</time>
                 </div>
-                <div className="chat-bubble text-lg text-white">{message.content}</div>
+                <div className="chat-bubble text-lg text-gray-800 bg-blue-300">{message.content}</div>
             </div>
         }
     </>

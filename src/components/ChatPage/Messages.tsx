@@ -7,7 +7,7 @@ type Props = { messages: Message[] };
 const Messages = ({ messages }: Props) => {
     return <>
         {messages.map((message, key) => {
-            return <div><ChatBubble message={message} /></div>
+            return <div key={key}><ChatBubble message={message} /></div>
         })}
     </>
 };

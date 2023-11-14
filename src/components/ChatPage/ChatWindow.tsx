@@ -18,7 +18,7 @@ const ChatWindow = ({ chat }: { chat: Chat }) => {
     return (
         <>
             <div className="flex flex-col h-full max-h-screen justify-center">
-                <div className="rounder-md h-10 md:h-20 border-bottom-1">
+                <div className="rounder-md h-10 md:h-20 ">
                     <ChannelHead
                         others={chat.participants.filter(
                             (chat: Participant) => chat.userId != myUserId

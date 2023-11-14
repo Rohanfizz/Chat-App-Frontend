@@ -237,10 +237,9 @@ const ChatPage = () => {
                 </aside>
 
                 {
-                    <div className="md:hidden flex items-center justify-between p-4 bg-gray-500 m-2">
+                    <div className="md:hidden flex items-center justify-between p-4 bg-gray-500 m-2" onClick={() => setisSideBarHidden((prev) => !prev)}>
                         <button
                             className="text-2xl"
-                            onClick={() => setisSideBarHidden((prev) => !prev)}
                         >
                             &#9776;
                         </button>
